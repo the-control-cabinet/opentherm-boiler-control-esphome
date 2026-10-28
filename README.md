@@ -15,7 +15,7 @@
 >
 > **Status:** design. The node hardware is assembled (shield orientation proven); boiler connection, firmware and tuning are still to come. Docs 08-10 are templates for the results.
 
-**Portfolio position:** Automation level · plant control strategy. Built on: [Heating plant monitoring](https://github.com/the-control-cabinet/heating-plant-monitoring-esphome) (opto demand inputs, flow/return, boiler state) · [Evohome & RAMSES-II](https://github.com/the-control-cabinet/evohome-heating-controls-ramses-integration) (zone demand)
+**Portfolio position:** Automation level · plant control strategy. Step **E** of the delivery sequence: after the [supervisory layer](https://github.com/the-control-cabinet/ha-node-red-supervisory-layer), [optimum start/stop](https://github.com/the-control-cabinet/optimum-start-stop-supervisory) and the [PID rig exercise](https://github.com/the-control-cabinet/pid-anti-hunt-control-rig). Built on: [Heating plant monitoring](https://github.com/the-control-cabinet/heating-plant-monitoring-esphome) (opto demand inputs, flow/return, boiler state) · [Evohome & RAMSES-II](https://github.com/the-control-cabinet/evohome-heating-controls-ramses-integration) (zone demand)
 
 ---
 
@@ -53,11 +53,23 @@ flowchart LR
 | [09 Commissioning and tests](docs/09-commissioning-tests.md) | Test plan with pass criteria | Template |
 | [10 Outcomes and use cases](docs/10-outcomes-and-use-cases.md) | Metrics before/after; scenarios; constraints | Template |
 
+## Delivery sequence
+
+| Step | What | Repo |
+|---|---|---|
+| **A** | Plant monitoring install + on/off **baseline** (2-4 weeks) | [Heating plant monitoring](https://github.com/the-control-cabinet/heating-plant-monitoring-esphome) |
+| **B** | **Supervisory layer:** HA + Node-RED platform, command authority, fail-safe patterns | [Supervisory layer](https://github.com/the-control-cabinet/ha-node-red-supervisory-layer) |
+| **C** | **Optimum start/stop** on today's on/off control (first function on B) | [Optimum start/stop](https://github.com/the-control-cabinet/optimum-start-stop-supervisory) |
+| **D** *(in parallel with A-C)* | **PID rig exercise** (+ interlocks), and the OpenTherm node **bench test** | [PID rig](https://github.com/the-control-cabinet/pid-anti-hunt-control-rig) |
+| **E** | **OpenTherm on the boiler:** read-only → weather comp → PID trim → preheat boost linked to C | [OpenTherm control](https://github.com/the-control-cabinet/opentherm-boiler-control-esphome) |
+| **F** | Before/after report: baseline → C → E | [Energy dashboard](https://github.com/the-control-cabinet/home-energy-dashboard) |
+
 ## Roadmap
 - [x] Design and decision record
 - [x] Node hardware: D1 mini + DIYLESS shield (orientation proven from the PCB tracks)
-- [ ] Bench test: node online, OpenTherm library running, no boiler connected
-- [ ] Monitoring baseline (on/off control) captured for comparison
+- [ ] Bench test: node online, OpenTherm library running, no boiler connected (step D, in parallel)
+- [ ] Monitoring baseline (on/off control) captured for comparison (A)
+- [ ] Supervisory layer (B) and optimum start/stop (C) live; PID method proven on the rig (D)
 - [ ] Boiler connection + changeover relays; first OpenTherm read-only session
 - [ ] Control live: weather compensation only, then PID trim
 - [ ] Tuning, commissioning tests, before/after report

@@ -39,7 +39,10 @@ When either cylinder calls, the setpoint goes to the **DHW flow temperature** (e
 - Minimum burn: e.g. 10 min; minimum off: e.g. 5 min (unless DHW calls).
 - If modulation sits at minimum and flow overshoots, reduce the setpoint before allowing an off-cycle.
 
-## 6. Limits and safety
+## 6. Preheat boost (from optimum start/stop)
+When the [optimum start/stop supervisor](https://github.com/the-control-cabinet/optimum-start-stop-supervisory) (running on the [supervisory layer](https://github.com/the-control-cabinet/ha-node-red-supervisory-layer)) flags a preheat, the node adds a **boost** (e.g. +10 °C on the weather-compensation setpoint, still clamped) to shorten heat-up. The supervisor then re-learns its heat-up rates under modulating control.
+
+## 7. Limits and safety
 - **The boiler's own limits always apply** (high limit, its maximum CH setpoint).
 - **Frost protection:** if the outdoor temperature is under 3 °C and there's no demand for 2 h, enable at a low setpoint briefly (or leave this to Evohome/boiler frost features ⟨decide⟩).
 - **Stale inputs:** see [doc 04](04-firmware-and-ha.md).

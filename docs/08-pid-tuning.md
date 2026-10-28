@@ -3,6 +3,8 @@
 [← Back to README](../README.md) · Log: [data/tuning-log.csv](../data/tuning-log.csv)
 
 ## Method
+The method is rehearsed first on the [PID rig exercise](https://github.com/the-control-cabinet/pid-anti-hunt-control-rig) (step test, model fit, tuning rule, detuning, anti-windup), then applied here.
+
 1. **Baseline:** a week on the original on/off control, recording cycles per hour, flow and return temperatures, gas per degree-day.
 2. **Weather compensation only** (PID off): tune the curve until most rooms reach setpoint with little Evohome TPI cycling.
 3. **Open-loop step test:** with the setpoint stepped +5 °C, record the response of the process variable: dead time, time constant, gain.
