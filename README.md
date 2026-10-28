@@ -13,7 +13,7 @@
 > - **Evohome stays** for room and zone control. Its demand is read three ways: **hard-wired** (opto inputs on every BDR91), **RAMSES-II** radio (per-zone heat demand) and the **cloud** (back-up).
 > - **An interlocked changeover** switches the boiler between OpenTherm control and the original BDR91 switched lives, so the house is never left without heating.
 >
-> **Status:** design. The node hardware is assembled (shield orientation proven); boiler connection, firmware and tuning are still to come. Docs 08-10 are templates for the results.
+> **Status:** design. The node hardware is in hand and the shield orientation is proven (soldering pending); boiler connection, firmware and tuning are still to come. Docs 08-10 are templates for the results.
 
 **Portfolio position:** Automation level · plant control strategy. Step **E** of the delivery sequence: after the [supervisory layer](https://github.com/the-control-cabinet/ha-node-red-supervisory-layer), [optimum start/stop](https://github.com/the-control-cabinet/optimum-start-stop-supervisory) and the [PID rig exercise](https://github.com/the-control-cabinet/pid-anti-hunt-control-rig). Built on: [Heating plant monitoring](https://github.com/the-control-cabinet/heating-plant-monitoring-esphome) (opto demand inputs, flow/return, boiler state) · [Evohome & RAMSES-II](https://github.com/the-control-cabinet/evohome-heating-controls-ramses-integration) (zone demand)
 
@@ -43,7 +43,7 @@ flowchart LR
 | Doc | Contents | Status |
 |---|---|---|
 | [01 Why OpenTherm, and the constraints](docs/01-why-and-constraints.md) | On/off vs modulation; the one-controller limit; why HA is the master | Design |
-| [02 Hardware: node build](docs/02-hardware-node.md) | DIYLESS shield + D1 mini, orientation proof, soldering, enclosure | Assembled |
+| [02 Hardware: node build](docs/02-hardware-node.md) | DIYLESS shield + D1 mini, orientation proof, soldering, enclosure | Orientation proven · soldering pending |
 | [03 Boiler side: Ideal Logic+ S30](docs/03-boiler-connection.md) | OpenTherm terminals, the link, safety, connection steps | Design (verify on site) |
 | [04 Firmware and Home Assistant](docs/04-firmware-and-ha.md) | Node YAML, entities, what the boiler reports | Design |
 | [05 Evohome integration](docs/05-evohome-integration.md) | Demand from opto, RAMSES-II and cloud; Evohome settings | Design |
@@ -66,7 +66,8 @@ flowchart LR
 
 ## Roadmap
 - [x] Design and decision record
-- [x] Node hardware: D1 mini + DIYLESS shield (orientation proven from the PCB tracks)
+- [x] Node hardware: D1 mini + DIYLESS shield orientation proven from the PCB tracks
+- [ ] Solder the shield to the D1 mini (after a solo flash test of the D1 mini)
 - [ ] Bench test: node online, OpenTherm library running, no boiler connected (step D, in parallel)
 - [ ] Monitoring baseline (on/off control) captured for comparison (A)
 - [ ] Supervisory layer (B) and optimum start/stop (C) live; PID method proven on the rig (D)
